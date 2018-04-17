@@ -8,7 +8,7 @@ public class Test {
     @org.junit.Test
     public void test(){
         ApplicationContext ac = new ClassPathXmlApplicationContext("spring-context.xml");
-        HelloWorld helloWorld = (HelloWorld)ac.getBean("helloWorld");
-        helloWorld.say();
+//        HelloWorld helloWorld = (HelloWorld)ac.getBean("helloWorld");
+//        helloWorld.say();
     }
 }
