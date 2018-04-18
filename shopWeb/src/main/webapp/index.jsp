@@ -8,17 +8,20 @@
 
 </head>
 <body>
-    <h2>Hello World! cao ni ma！！</h2>
-    <input type="button" value="靠你妹的" onclick="onClick()" />
+    <input type="button" value="靠" onclick="onClick()" />
 </body>
 </html>
 
 <script>
     function  onClick() {
         var url = basePath+"userController/say";
-        alert(basePath);
 
-        ajaxSubmit(url,"",function (result) {
+        var data={
+            name:"chensr",
+            say:"曹尼玛的联通"
+        }
+
+        ajaxSubmit(url,data,function (result) {
             alert(result.msg);
         })
     }

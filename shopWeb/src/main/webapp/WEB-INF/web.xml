@@ -10,6 +10,7 @@
         <param-value>classpath:spring-context.xml</param-value>
     </context-param>
 
+    <!--spring mvc配置-->
     <servlet>
         <servlet-name>springMVC</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -26,7 +27,7 @@
     </servlet-mapping>
 
 
-
+    <!--utf-8编码-->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
