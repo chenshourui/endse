@@ -1,6 +1,6 @@
 package com.endse.user.controller;
 
-import com.endse.common.basic.BasicContorller;
+import com.endse.common.controller.BasicContorller;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Scope("prototype")
 @Controller
 @RequestMapping("/userController")
-public class UserController {
+public class UserController extends  BasicContorller{
 
     @ResponseBody
     @RequestMapping("say")

@@ -1,4 +1,4 @@
-package com.endse.common.basic;
+package com.endse.common.controller;
 
 import org.apache.log4j.Logger;
 import org.springframework.util.StringUtils;

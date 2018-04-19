@@ -166,6 +166,18 @@
       <version>1.7.5</version>
     </dependency>
 
+    <!--引入mysql和数据源-->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.0.25</version>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.29</version>
+    </dependency>
+
     <!-- junit测试 -->
     <dependency>
       <groupId>junit</groupId>
