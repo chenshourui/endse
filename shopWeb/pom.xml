@@ -116,9 +116,31 @@
       <version>1.7.4.RELEASE</version>
     </dependency>
 
+
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-ehcache</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-envers</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
       <version>${hibernate.version}</version>
     </dependency>
 
@@ -176,6 +198,22 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.29</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.javasimon</groupId>
+      <artifactId>javasimon-jdbc4</artifactId>
+      <version>3.5.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.javasimon</groupId>
+      <artifactId>javasimon-spring</artifactId>
+      <version>4.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.javasimon</groupId>
+      <artifactId>javasimon-console-embed</artifactId>
+      <version>4.1.1</version>
     </dependency>
 
     <!-- junit测试 -->
