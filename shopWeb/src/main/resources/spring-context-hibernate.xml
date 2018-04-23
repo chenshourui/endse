@@ -42,55 +42,78 @@
         <property name="testOnReturn" value="false" />
 
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小（Oracle使用） -->
-        <property name="poolPreparedStatements" value="true" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <!--<property name="poolPreparedStatements" value="true" />-->
+        <!--<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />-->
 
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat" />
     </bean>
 
-    <!--配置JdbcTemplate模板/-->
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="masterDataSource" />
-    </bean>
 
-    <!-- 定义实体管理器工厂  Jpa配置   LocalContainerEntityManagerFactoryBean这个选项Spring扮演了容器的角色。完全掌管JPA -->
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <!-- 指定数据源 -->
-        <property name="dataSource" ref="masterDataSource"/>
-        <!-- 指定Jpa持久化实现厂商类,这里以Hibernate为例 -->
-        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter"/>
-        <!-- 指定Entity实体类包路径 -->
-        <property name="packagesToScan" >
-            <array>
+    <!-- Jpa Entity Manager 配置 -->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="masterDataSource" />
+        <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
+        <!-- <property name="persistenceXmlLocation" value="classpath:resource/spring/persistence.xml"
+            /> -->
+        <property name="packagesToScan">
+            <list>
                 <value>com.endse.*.entity</value>
-            </array>
+            </list>
         </property>
-        <!-- 指定JPA属性；如Hibernate中指定是否显示SQL的是否显示、方言等 -->
+
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+                </prop>
+                <prop key="net.sf.ehcache.configurationResourceName">spring-ehcache.xml</prop>
                 <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
-                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
-                <prop key="hibernate.show_sql">${jdbc.pool.maxActive}</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop>
+                <prop key="hibernate.jdbc.fetch_size">50</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <prop key="hibernate.jdbc.tatch_versioned_data">true</prop>
             </props>
         </property>
     </bean>
 
-    <!-- Hibernate对Jpa的实现 -->
-    <bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+    <bean id="hibernateJpaVendorAdapter"
+          class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+        <property name="databasePlatform">
+            <bean factory-method="getDialect"
+                  class="com.endse.common.repository.HibernateHelper">
+                <constructor-arg ref="masterDataSource" />
+            </bean>
+        </property>
+        <property name="generateDdl" value="${hibernate.generateDdl}" />
+        <property name="showSql" value="${hibernate.showSql}" />
+    </bean>
 
-    <!-- 重要配置：启用扫描并自动创建代理的功能  -->
-    <jpa:repositories base-package="com.endse.*.service.*"  transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/>
+    <!-- Spring Data Jpa -->
+    <jpa:repositories base-package="com.endse.common.repository"
+                      transaction-manager-ref="transactionManager"
+                      entity-manager-factory-ref="entityManagerFactory" />
 
-    <!-- Jpa 事务管理器  -->
+    <!-- Jpa 事务配置 -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
         <property name="defaultTimeout" value="${jdbc.transaction.timeout}" />
     </bean>
 
-    <!-- 开启注解事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"
+                          proxy-target-class="true" />
+
+    <!-- 定义aspectj -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="masterDataSource" />
+    </bean>
+
+    <bean id="userDao" class="com.endse.user.service.UserDao">
+        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    </bean>
+
+
+
 </beans>

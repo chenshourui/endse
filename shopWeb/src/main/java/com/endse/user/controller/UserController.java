@@ -29,7 +29,6 @@ public class UserController extends  BasicContorller{
         userService.say(name,say);
 
 
-
         Map<String, Object>  msg = new HashMap<String, Object>();
         msg.put("msg","联通：我是个大坑");
         return msg;

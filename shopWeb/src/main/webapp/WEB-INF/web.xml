@@ -10,13 +10,6 @@
         <param-value>classpath:spring-context.xml</param-value>
     </context-param>
 
-    <!-- 开启监听，web启动时装载spring配置 -->
-    <listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>
-
 
     <!--spring mvc配置-->
     <servlet>
@@ -51,6 +44,12 @@
     </filter-mapping>
 
 
+    <!-- 开启监听，web启动时装载spring配置 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

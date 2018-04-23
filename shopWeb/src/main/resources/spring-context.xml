@@ -27,11 +27,11 @@
     </bean>
 
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-    <context:component-scan base-package="com.endse">
+    <context:component-scan base-package="com.endse.*.service">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
     </context:component-scan>
 
     <!--引入与hibernate的整合-->
-    <import resource="spring-context-hibernate.xml"></import>
+    <!--<import resource="spring-context-hibernate.xml"></import>-->
 
 </beans>
