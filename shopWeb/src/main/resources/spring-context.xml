@@ -32,6 +32,6 @@
     </context:component-scan>
 
     <!--引入与hibernate的整合-->
-    <!--<import resource="spring-context-hibernate.xml"></import>-->
+    <import resource="spring-context-hibernate.xml"></import>
 
 </beans>

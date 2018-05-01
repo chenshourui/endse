@@ -1,7 +1,6 @@
 package com.endse.user.service.impl;
 
 import com.endse.user.entity.User;
-import com.endse.user.service.UserDao;
 import com.endse.user.service.UserService;
 import org.javasimon.aop.Monitored;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ import java.math.BigDecimal;
 @Monitored
 @Service("userService")
 public class UserServiceImpl implements UserService {
-
-    @Autowired
-    private UserDao userDao;
 
 
     @Transactional
@@ -42,7 +38,7 @@ public class UserServiceImpl implements UserService {
         user.setUserQq("1234");
         user.setUserTname("chensr");
         user.setUserTel("1234");
-        userDao.save(user);
+//        userDao.save(user);
     }
 
 

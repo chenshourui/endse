@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * Created by Administrator on 2018/4/19.
  */
 @Entity
-@Table(name = "OUB_ALLOCATION_RULE")
+@Table(name = "pe_user")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @DynamicInsert(true)
 @DynamicUpdate(true)

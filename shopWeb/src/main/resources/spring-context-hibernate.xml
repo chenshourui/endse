@@ -55,8 +55,7 @@
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="masterDataSource" />
         <property name="jpaVendorAdapter" ref="hibernateJpaVendorAdapter" />
-        <!-- <property name="persistenceXmlLocation" value="classpath:resource/spring/persistence.xml"
-            /> -->
+
         <property name="packagesToScan">
             <list>
                 <value>com.endse.*.entity</value>
@@ -76,14 +75,11 @@
         </property>
     </bean>
 
+
+
     <bean id="hibernateJpaVendorAdapter"
           class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property name="databasePlatform">
-            <bean factory-method="getDialect"
-                  class="com.endse.common.repository.HibernateHelper">
-                <constructor-arg ref="masterDataSource" />
-            </bean>
-        </property>
+        <property name="databasePlatform" value="org.hibernate.dialect.MySQL57InnoDBDialect" />
         <property name="generateDdl" value="${hibernate.generateDdl}" />
         <property name="showSql" value="${hibernate.showSql}" />
     </bean>
@@ -110,8 +106,9 @@
         <property name="dataSource" ref="masterDataSource" />
     </bean>
 
-    <bean id="userDao" class="com.endse.user.service.UserDao">
-        <property name="jdbcTemplate" ref="jdbcTemplate" />
+    <bean id="commonDao"
+          class="com.endse.common.repository.dao.impl.CommonDaoImpl">
+        <property name="transactionManager" ref="transactionManager" />
     </bean>
 
 
