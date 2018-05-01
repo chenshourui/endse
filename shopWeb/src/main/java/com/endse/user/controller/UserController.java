@@ -24,10 +24,8 @@ public class UserController extends  BasicContorller{
 
     @ResponseBody
     @RequestMapping("say")
-    public Map<String, Object> say(String name,String say){
-
+    public Map<String, Object> say(String name,String say) throws Exception{
         userService.say(name,say);
-
 
         Map<String, Object>  msg = new HashMap<String, Object>();
         msg.put("msg","联通：我是个大坑");

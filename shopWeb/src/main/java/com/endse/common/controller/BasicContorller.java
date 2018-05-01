@@ -47,5 +47,4 @@ public abstract class BasicContorller {
         }
         return map;
     }
-
 }

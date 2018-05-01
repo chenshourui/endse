@@ -26,7 +26,7 @@ public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "user_name")
     private String userName;
@@ -70,11 +70,11 @@ public class User {
     @Column(name = "user_ip")
     private String userIp;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -188,5 +188,26 @@ public class User {
 
     public void setUserIp(String userIp) {
         this.userIp = userIp;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", userPw='" + userPw + '\'' +
+                ", userMoney=" + userMoney +
+                ", userPoint=" + userPoint +
+                ", userPointAll=" + userPointAll +
+                ", userTname='" + userTname + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userTel='" + userTel + '\'' +
+                ", userQq='" + userQq + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userAddress='" + userAddress + '\'' +
+                ", userAtime=" + userAtime +
+                ", userLtime=" + userLtime +
+                ", userIp='" + userIp + '\'' +
+                '}';
     }
 }

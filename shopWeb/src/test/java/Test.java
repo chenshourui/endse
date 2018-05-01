@@ -9,9 +9,11 @@ public class Test {
     @org.junit.Test
     public void test(){
 
-        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-context.xml");
-        UserController userController = (UserController)ac.getBean("userController");
-        userController.say("chensr","abcd");
+        int b=1/0;
+
+//        ApplicationContext ac = new ClassPathXmlApplicationContext("spring-context.xml");
+//        UserController userController = (UserController)ac.getBean("userController");
+//        userController.say("chensr","abcd");
 
     }
 }
